@@ -1,9 +1,11 @@
 import React from 'react'
+import { Spotlight } from './components/UI/spotlight'
+
 
 const App = () => {
   return (
     <main>
-    <div className="pattern">
+    <div className="pattern overflow-hidden">
       <div className="wrapper">
         <header>
           <h1>
@@ -12,6 +14,7 @@ const App = () => {
         </header>
         <p>Search</p>
       </div>
+      <Spotlight/>
     </div>
     </main>
   )
