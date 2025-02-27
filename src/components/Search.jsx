@@ -1,9 +1,13 @@
 import React from 'react'
+import { CiSearch } from "react-icons/ci";
 
-const Search = () => {
+const Search = ({searchTerm, setSearchTerm}) => {
+
+    
   return (
-    <div className="text-white text-3xl">
-      Search
+    <div className="search flex items-center">
+     <CiSearch scale={'500px'} color='white'/>
+     <input type="text" placeholder="Search" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}/>
     </div>
   )
 }

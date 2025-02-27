@@ -13,18 +13,17 @@ const App = () => {
       <div className="wrapper">
         
         <header>
-          
           <h1>
             Find Your Favourite <span className='text-gradient'>Movies</span>
           </h1>
         </header>
-        <ThreeDCardDemo/>
+        <ThreeDCardDemo className="xs:max-w-3xl"/>
         <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
       </div>
       <Spotlight/>
     </div>
     </main>
   )
-} 
+}  
 
 export default App
