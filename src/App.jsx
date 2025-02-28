@@ -4,6 +4,8 @@ import Search from './components/Search'
 import ThreeDCardDemo from './components/Card'
 import Spinner from './components/Spinner';
 import MovieCard from './components/MovieCard';
+import { useDebounce } from 'react-use';
+import { updateSearchCount } from '../appwrite';
 
 const API_BASE_URL = 'https://api.themoviedb.org/3';
 
@@ -25,14 +27,21 @@ const App = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [movieList, setmovieList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const[debounceSearchTerm, setDebounceSearchTerm] = useState('');
 
-  const fetchMovies = async () => { 
+  useDebounce(() => 
+    setDebounceSearchTerm(searchTerm), 500, [searchTerm])
+  
+  const fetchMovies = async ( query = '') => { 
 
     setIsLoading(true);
     setErrorMessage('');
     try{  
 
-      const endpoint = `${API_BASE_URL}/discover/movie?&sort_by=popularity.desc`;
+      const endpoint = query
+       ? `${API_BASE_URL}/search/movie?&query=${encodeURIComponent(query)}`
+       :
+       `${API_BASE_URL}/discover/movie?&sort_by=popularity.desc`;
       const response = await fetch(endpoint, API_OPTIONS);
 
      if(!response.ok){
@@ -46,6 +55,11 @@ const App = () => {
         return;
       }
       setmovieList(data.results || []);
+
+      if(query && data.results.length > 0){
+        await updateSearchCount(query, data.results[0]);
+      }
+      
     }
     catch(error){
       console.error(`Error fetching movies: ${error}`);
@@ -58,9 +72,9 @@ const App = () => {
   }
 
   useEffect(() => {
-    fetchMovies();
+    fetchMovies(debounceSearchTerm);
   }
-  ,[])
+  ,[debounceSearchTerm])
   return (
     <main>
     <div className="pattern overflow-x-hidden">
@@ -73,7 +87,7 @@ const App = () => {
         </header>
         <ThreeDCardDemo className="xs:max-w-3xl"/>
         <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
-        <h1 className='text-white'>{searchTerm}</h1>
+        {/*<h3 className='text-white justify-center items-center flex'>{searchTerm}</h3>*/}
         <section className="all-movies">
             <h2 className='mt-[40px]'>All movies</h2>
             {isLoading ?(
