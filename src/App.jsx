@@ -3,6 +3,7 @@ import { Spotlight } from './components/UI/spotlight'
 import Search from './components/Search'
 import ThreeDCardDemo from './components/Card'
 import Spinner from './components/Spinner';
+import MovieCard from './components/MovieCard';
 
 const API_BASE_URL = 'https://api.themoviedb.org/3';
 
@@ -74,7 +75,7 @@ const App = () => {
         <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
         <h1 className='text-white'>{searchTerm}</h1>
         <section className="all-movies">
-            <h2>All movies</h2>
+            <h2 className='mt-[40px]'>All movies</h2>
             {isLoading ?(
               <Spinner/>
             ): errorMessage ? (
@@ -83,7 +84,7 @@ const App = () => {
 
                 <ul>
                   {movieList.map((movie) => (
-                    <p key={movie.id} className='text-white'>{movie.title}</p>
+                    <MovieCard key={movie.id} movie={movie}/>
                   ))}
                 </ul>
 
