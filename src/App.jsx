@@ -5,7 +5,7 @@ import ThreeDCardDemo from './components/Card'
 import Spinner from './components/Spinner';
 import MovieCard from './components/MovieCard';
 import { useDebounce } from 'react-use';
-import { updateSearchCount } from '../appwrite';
+import { updateSearchCount } from './appwrite';
 
 const API_BASE_URL = 'https://api.themoviedb.org/3';
 
