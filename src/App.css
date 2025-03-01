@@ -40,3 +40,6 @@
 .read-the-docs {
   color: #888;
 }
+.c-space {
+  @apply sm:px-10 px-5;
+}
