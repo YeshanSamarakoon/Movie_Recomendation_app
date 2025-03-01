@@ -1,17 +1,15 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
-
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@100..900&family=Comfortaa:wght@300..700&family=Readex+Pro:wght@160..700&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&family=Roboto+Slab:wght@100..900&family=Rubik:ital,wght@0,300..900;1,300..900&family=Tilt+Warp&family=Vina+Sans&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #030014;
+  --color-primary: #001417;
 
   --color-light-100: #cecefb;
-  --color-light-200: #a8b5db;
+  --color-light-200: #c94e06;
 
   --color-gray-100: #9ca4ab;
 
-  --color-dark-100: #0f0d23;
+  --color-dark-100: #011012;
 
   --font-dm-sans: DM Sans, sans-serif;
 
@@ -22,11 +20,16 @@
 
 @layer base {
   body {
-    font-family: "DM Sans", serif;
+    font-family: "Readex Pro", sans-serif;
     font-optical-sizing: auto;
-    background: #030014;
+  font-weight: 160;
+  font-style: normal;
+  font-variation-settings:
+    "XROT" 0,
+    "YROT" 0;
+    
   }
-
+  
   h1 {
     @apply mx-auto max-w-4xl text-center text-5xl font-bold leading-tight tracking-[-1%] text-white sm:text-[64px] sm:leading-[76px];
   }
@@ -49,6 +52,12 @@
 }
 
 @layer components {
+  .vina {
+    font-family: "Vina Sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
   .pattern {
     @apply bg-hero-pattern w-screen h-screen bg-center bg-cover absolute z-0;
   }

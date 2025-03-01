@@ -5,7 +5,7 @@ import ThreeDCardDemo from './components/Card'
 import Spinner from './components/Spinner';
 import MovieCard from './components/MovieCard';
 import { useDebounce } from 'react-use';
-import { updateSearchCount } from './appwrite';
+import { getTrendingMovies, updateSearchCount } from './appwrite';
 
 const API_BASE_URL = 'https://api.themoviedb.org/3';
 
@@ -27,7 +27,7 @@ const App = () => {
   const [movieList, setmovieList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [debounceSearchTerm, setDebounceSearchTerm] = useState('');
-  const [treandingMovies, setTreandingMovies] = useState([]);
+  const [trendingMovies, setTrendingMovies] = useState([]);
 
   useDebounce(() =>
     setDebounceSearchTerm(searchTerm), 500, [searchTerm])
@@ -71,14 +71,13 @@ const App = () => {
 
   }
 
-  const LoadTreandingMovies = async () => {
+ const loadTrendingMovies = async () => {
     try {
       const movies = await getTrendingMovies();
-      setTreandingMovies(movies);
-    }
-    catch (error) {
-      console.error(`Error fetching treanding movies: ${error}`);
 
+      setTrendingMovies(movies);
+    } catch (error) {
+      console.error(`Error fetching trending movies: ${error}`);
     }
   }
 
@@ -88,7 +87,7 @@ const App = () => {
     , [debounceSearchTerm])
 
   useEffect(() => {
-    LoadTreandingMovies();
+    loadTrendingMovies();
   }
     , [])
 
@@ -105,7 +104,7 @@ const App = () => {
         <div className="wrapper">
 
           <header>
-            <h1>
+            <h1 className='vina'>
               Find Your Favourite <span className='text-gradient'>Movies</span>
             </h1>
 
@@ -116,11 +115,21 @@ const App = () => {
           <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm}  />
           </div>
           </header>
-          {treandingMovies.length > 0 && (
-            <section className="treanding-movies">
-                <h2>Trending Movies</h2>
-              </section>
-          )}
+
+          {trendingMovies.length > 0 && (
+          <section className="trending">
+            <h2>Trending Movies</h2>
+
+            <ul>
+              {trendingMovies.map((movie, index) => (
+                <li key={movie.$id}>
+                  <p>{index + 1}</p>
+                  <img src={movie.poster_url} alt={movie.title} />
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
          
         
           <section className="all-movies">
