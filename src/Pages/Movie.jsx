@@ -8,6 +8,8 @@ import { useDebounce } from 'react-use';
 import { getTrendingMovies, updateSearchCount } from '../appwrite';
 import { Tilt } from 'react-tilt';
 import AppLo from '../components/Navbar';
+import SparklesPreview from '../section/Sparkles';
+
 
 
 
@@ -118,7 +120,7 @@ const Movie = () => {
       <div className="pattern overflow-x-hidden">
         <div className="wrapper">
 
-          <header>
+          <div>
               <div>
               <AppLo/>
               </div>
@@ -134,7 +136,7 @@ const Movie = () => {
           <div id='search-bar' className='mt-[60px]'>
           <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm}  />
           </div>
-          </header>
+          </div>
           
           {trendingMovies.length > 0 && (
           <section className="trending">
@@ -170,8 +172,9 @@ const Movie = () => {
           </section>
          
         </div>
+        <SparklesPreview/>  
         <Spotlight />
-       
+          
       </div>
       
    

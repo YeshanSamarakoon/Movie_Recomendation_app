@@ -1,8 +1,6 @@
 
 import React from 'react'
 import Movie from './Pages/Movie'
-//import SparklesPreview from 'section/Sparkles';
-
 const App = () => {
   return (
     <main>
@@ -12,7 +10,6 @@ const App = () => {
       
        
     </main>
-    
   )
 }
 
