@@ -53,6 +53,9 @@ const Navbar = () => {
               />
             </svg>
           </button>
+          <div className="hidden md:block">
+            <Navitems />
+          </div>
         </div>
         {isOpen && (
           <div
@@ -75,6 +78,9 @@ const Navbar = () => {
             </ul>
           </div>
         )}
+        <div className="md:hidden">
+          <Navitems />
+        </div>
       </div>
     </nav>
   );

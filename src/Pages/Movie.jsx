@@ -8,7 +8,7 @@ import { useDebounce } from 'react-use';
 import { getTrendingMovies, updateSearchCount } from '../appwrite';
 import { Tilt } from 'react-tilt';
 import AppLo from '../components/Navbar';
-import SparklesPreview from '../section/Sparkles';
+//import SparklesPreview from '../section/Sparkles';
 
 
 
@@ -170,9 +170,9 @@ const Movie = () => {
 
             )}
           </section>
-         
+          
         </div>
-        <SparklesPreview/>  
+        
         <Spotlight />
           
       </div>
