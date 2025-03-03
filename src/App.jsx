@@ -8,11 +8,11 @@ const App = () => {
   return (
     <main>
       <div>
-     
-      <div>
       <Movie/>
+      <div>
+      
       </div>
-      <BackgroundBeamsDemo/>
+        
       </div>
       
       
